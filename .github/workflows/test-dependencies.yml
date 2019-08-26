@@ -1,0 +1,15 @@
+name: Test Dependencies
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm install -g yarn
+    - run: yarn install --frozen-lockfile --ignore-scripts
+    - run: yarn run test-dependencies
